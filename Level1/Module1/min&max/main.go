@@ -7,31 +7,32 @@ import (
 func main() {
 
 	var a, b, c int
+	var max, min int
+	fmt.Scan(&a, &b, &c)
 
-	fmt.Println("Enter three numbers : ")
-	fmt.Scanln(&a, &b, &c)
-	var min, max int
 	if a >= b && a >= c {
 		max = a
-		if b >= c {
-			min = c
-		} else {
+		if b < c {
 			min = b
+		} else {
+			min = c
 		}
 	} else if b >= a && b >= c {
 		max = b
-		if a >= c {
-			min = c
-		} else {
+		if a < c {
 			min = a
+		} else {
+			min = c
 		}
 	} else {
 		max = c
-		if a >= b {
-			min = b
-		} else {
+		if a < b {
 			min = a
+		} else {
+			min = b
 		}
 	}
-	fmt.Printf("Min: %d, Max: %d\n", min, max)
+
+	fmt.Println(min, max)
+
 }

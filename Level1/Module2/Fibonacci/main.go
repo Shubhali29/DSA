@@ -6,17 +6,28 @@ import (
 
 func main() {
 
-	var number int
-	fmt.Println("Enter the number: ")
-	fmt.Scan(&number)
+	var num int
+	fmt.Scan(&num)
 
-	fibancci := make([]int, number)
-	fibancci[0] = 0
-	fibancci[1] = 1
-
-	for i := 2; i < number; i++ {
-		fibancci[i] = fibancci[i-1] + fibancci[i-2]
+	if num == 1 {
+		fib1 := 0
+		fmt.Println(fib1)
+		return
 	}
 
-	fmt.Printf("Fibonacci number of %v: %v", number, fibancci[number-1])
+	if num == 2 {
+		fib2 := 1
+		fmt.Println(fib2)
+		return
+	}
+
+	fibSeries := make([]int, num)
+	fibSeries[0] = 0
+	fibSeries[1] = 1
+
+	for i := 2; i < num; i++ {
+		fibSeries[i] = fibSeries[i-1] + fibSeries[i-2]
+	}
+
+	fmt.Println(fibSeries[num-1])
 }

@@ -6,14 +6,14 @@ import (
 
 func main() {
 
-	var num1, num2 int
-	fmt.Println("Enter two numbers : ")
-	fmt.Scanln(&num1, &num2)
+	var a, b int
 
-	if num1%num2 == 0 || num2%num1 == 0 {
-		fmt.Println("Multiples")
+	fmt.Scan(&a)
+	fmt.Scan(&b)
+
+	if a%b == 0 || b%a == 0 {
+		fmt.Print("Multiples")
 	} else {
-		fmt.Println("No Multiples")
+		fmt.Print("No Multiples")
 	}
-
 }

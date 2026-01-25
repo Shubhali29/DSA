@@ -6,35 +6,35 @@ import (
 
 func main() {
 
-	var totalNumber int
-	var evenCount, oddCount, negativeCount, PositiveCount int
+	var length int
+	var even, odd, positive, negative int
 
-	fmt.Println("Enter the total number of elements: ")
-	fmt.Scan(&totalNumber)
+	fmt.Scan(&length)
+	inputs := make([]int, length)
 
-	numbers := make([]int, totalNumber)
+	for i := 0; i < length; i++ {
+		fmt.Scan(&inputs[i])
 
-	for i := 1; i <= totalNumber; i++ {
-		fmt.Println("Enter the number: ")
-		fmt.Scan(&numbers[i-1])
 	}
 
-	for i := 0; i < totalNumber; i++ {
-		if numbers[i] < 0 {
-			negativeCount++
-		} else if numbers[i] > 0 {
-			PositiveCount++
+	for _, value := range inputs {
+		if value < 0 {
+			negative = negative + 1
 		}
-		if numbers[i]%2 == 0 {
-			evenCount++
+
+		if value > 0 {
+			positive = positive + 1
+		}
+
+		if value%2 == 0 || value == 0 {
+			even = even + 1
 		} else {
-			oddCount++
+			odd = odd + 1
 		}
 	}
 
-	fmt.Println("Even : ", evenCount)
-	fmt.Println("Odd : ", oddCount)
-	fmt.Println("Positive : ", PositiveCount)
-	fmt.Println("Negative : ", negativeCount)
-
+	fmt.Println("Even: ", even)
+	fmt.Println("Odd: ", odd)
+	fmt.Println("Positive: ", positive)
+	fmt.Println("Negative: ", negative)
 }

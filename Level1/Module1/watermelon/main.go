@@ -6,13 +6,13 @@ import (
 
 func main() {
 
-	var weight int
-	fmt.Scanln(&weight)
+	var watermelonWeight int
 
-	if weight%2 != 0 || weight == 2 {
-		fmt.Println("NO")
+	fmt.Scan(&watermelonWeight)
+
+	if watermelonWeight != 2 && watermelonWeight%2 == 0 {
+		fmt.Print("Yes")
 	} else {
-
-		fmt.Println("YES")
+		fmt.Print("No")
 	}
 }

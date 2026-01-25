@@ -7,16 +7,15 @@ import (
 
 func main() {
 
-	var FirstNamePerson1, LastNamePerson1, FirstNamePerson2, LastNamePerson2 string
+	var fnPerson1, snPerson1, fnPerson2, snPerson2 string
 
-	fmt.Println("Enter First Name and Last Name of Person 1:")
-	fmt.Scanln(&FirstNamePerson1, &LastNamePerson1)
-	fmt.Println("Enter First Name and Last Name of Person 2:")
-	fmt.Scanln(&FirstNamePerson2, &LastNamePerson2)
+	fmt.Scanln(&fnPerson1, &snPerson1)
+	fmt.Scanln(&fnPerson2, &snPerson2)
 
-	if strings.EqualFold(LastNamePerson1, LastNamePerson2) {
-		fmt.Println("Brothers")
+	if strings.ToLower(snPerson1) == strings.ToLower(snPerson2) {
+		fmt.Println("ARE Brothers")
 	} else {
-		fmt.Println("Not Brothers")
+		fmt.Println("NOT")
 	}
+
 }

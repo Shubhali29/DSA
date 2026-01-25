@@ -6,18 +6,17 @@ import (
 
 func main() {
 
-	var totalPerson int
-	fmt.Println("Enter the total number of persons: ")
-	fmt.Scan(&totalPerson)
+	var numberOfPerson int
 
-	opinion := make([]int, totalPerson)
+	fmt.Scan(&numberOfPerson)
 
-	for i := 1; i <= totalPerson; i++ {
-		fmt.Println("Enter the opinion (1 for yes, 0 for no): ")
-		fmt.Scan(&opinion[i-1])
+	opinion := make([]int, numberOfPerson)
+
+	for i := 0; i < numberOfPerson; i++ {
+		fmt.Scan(&opinion[i])
 	}
 
-	for i := 0; i < len(opinion); i++ {
+	for i := 0; i < numberOfPerson; i++ {
 
 		if opinion[i] == 1 {
 			fmt.Println("HARD")
@@ -26,4 +25,5 @@ func main() {
 	}
 
 	fmt.Println("EASY")
+
 }

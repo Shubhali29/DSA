@@ -4,38 +4,58 @@ import (
 	"fmt"
 )
 
+/*
+4
+4 2 3 7
+2 3 4 9
+*/
+
 func main() {
 
-	var size int
-	fmt.Println("Enter the size of the array: ")
-	fmt.Scan(&size)
+	var n int
 
-	arrayA := make([]int, size)
-	arrayB := make([]int, size)
+	fmt.Scan(&n)
 
-	for i := 0; i < size; i++ {
-		fmt.Println("Enter the element of array A: ")
+	arrayA := make([]int, n)
+	arrayB := make([]int, n)
+
+	for i := 0; i < n; i++ {
 		fmt.Scan(&arrayA[i])
-		fmt.Println("Enter the element of array B: ")
+	}
+
+	for i := 0; i < n; i++ {
 		fmt.Scan(&arrayB[i])
 	}
 
-	count := 0
+	arrayAMap := make(map[int]int)
+	arrayBMap := make(map[int]int)
 
-	for i := 0; i < size; i++ {
+	for i := 0; i < n; i++ {
 
-		for j := i; j < size; j++ {
-			if arrayA[i] == arrayB[j] {
-				count++
-				break
-			}
+		if _, exists := arrayAMap[arrayA[i]]; exists {
+			arrayAMap[arrayA[i]] = arrayAMap[arrayA[i]] + 1
+		} else {
+			arrayAMap[arrayA[i]] = 1
+		}
+
+		if _, exists := arrayBMap[arrayB[i]]; exists {
+			arrayBMap[arrayB[i]] = arrayBMap[arrayB[i]] + 1
+		} else {
+			arrayBMap[arrayB[i]] = 1
 		}
 	}
 
-	if count == size {
-		fmt.Println("YES")
-	} else {
-		fmt.Println("NO")
+	for i := 0; i < n; i++ {
+		if _, exists := arrayBMap[arrayA[i]]; exists {
+			if arrayBMap[arrayA[i]] != arrayAMap[arrayA[i]] {
+				fmt.Println("no")
+				return
+			}
+		} else {
+			fmt.Println("no")
+			return
+		}
 	}
 
+	fmt.Println("yes")
 }

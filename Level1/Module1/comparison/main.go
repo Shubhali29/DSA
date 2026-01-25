@@ -7,33 +7,29 @@ import (
 func main() {
 
 	var num1, num2 int
-	var operator string
-	fmt.Println("Enter an expression :")
-	fmt.Scan(&num1, &operator, &num2)
+	var sign string
 
-	switch operator {
-	case ">":
-		if num1 > num2 {
-			fmt.Println("Right")
-		} else {
-			fmt.Println("Wrong")
-		}
-	case "<":
+	fmt.Scan(&num1, &sign, &num2)
 
+	switch {
+	case sign == "<":
 		if num1 < num2 {
 			fmt.Println("Right")
 		} else {
 			fmt.Println("Wrong")
 		}
-	case "=":
-		if num1 == num2 {
+	case sign == ">":
+		if num1 > num2 {
 			fmt.Println("Right")
-
 		} else {
 			fmt.Println("Wrong")
 		}
-	default:
-
-		fmt.Println("Invalid operator")
+	case sign == "=":
+		if num1 == num2 {
+			fmt.Println("Right")
+		} else {
+			fmt.Println("Wrong")
+		}
 	}
+
 }

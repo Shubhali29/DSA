@@ -6,30 +6,30 @@ import (
 
 func main() {
 
-	var num int
+	var number int
 
-	fmt.Println("Enter the number: ")
-	fmt.Scan(&num)
+	fmt.Scan(&number)
 
-	if num <= 1 {
+	if number <= 1 {
 		fmt.Println("NO")
 		return
 	}
 
-	count := 0
+	factor := 1
+	for i := 2; i <= number; i++ {
 
-	for i := 1; i <= num; i++ {
-
-		if num%i == 0 {
-			count++
+		if number%i == 0 {
+			factor = factor + 1
 		}
 
+		if factor > 2 {
+			break
+		}
 	}
 
-	if count == 2 {
+	if factor == 2 {
 		fmt.Println("YES")
-	} else {
-		fmt.Println("NO")
+		return
 	}
-
+	fmt.Println("NO")
 }
