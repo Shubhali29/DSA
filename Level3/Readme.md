@@ -187,7 +187,125 @@ Number Theory
     - count of divisors = (e1+1)*(e2+1)*.....(ek+1)
     - sum of divisor = multiplication of sum of all possible powers of prime number (geometric progression formula)
 13. x^1+x^2+x^3+.....x^k => Geometric progression
+14. Modular Airthmetic
+    - (A+B)%M = [(A%M) + (B%M)] % M
+    - (A-B)%M = [(A%M) - (B%M) + M] % M
+    - (A*B)%M = [(A%M) * (B%M)] % M
+    - (A/B)%M = [(A%M) + (B^-1 % M)] % M  here B^-1%M is Modular Inverse
+    - a%b = [0 ... b-1] here mod is just repeated subtraction
+    - mod can not be negative value
+15. Binary Exponantiation
+    - a^b => ?
+    - write power b in form of binary i.e a^7 = a^111 = a^(2^0 + 2^1 + 2^2 )
+        - here max power of 2 can be (log b) i.e 2^p >= b take log both side
+    - a^1 ---> a^2 (a^1*a^1)----> a^4 (a^2*a^2)-----> a^8 (a^4*a^4)
+    - needs to iterate over bits of power 
+16. Euclidean Algorithm
+    - gcd (a,b) = a if b = 0 otherwise gcd(b, a mod b) 
+        - here gcd is greatest common divisor
+    - Time complexity = O(log(min(a,b)))
+    - a%b <= a/2
+    - GCD(a,b) = GCD(b,a)
+    - GCD(a,0) = a
+    - GCD(a,b,c) = GCD(GCD(a,b),c) = GCD(a, GCD(b,c)) = GCD(b, GCD(a,c))
+    - GCD(a,b) >= GCD(a,b,c) >= GCD(a,b,c,d)
+    - GCD contains minimum power of primes
+    - LCM contains maximum power of primes
+    - GCD(a,b) * LCM(a,b) = a*b
+17. Euler's Totient Function & Fermat's Theorem
+    - Euler's Totient function of (n) = number of coprime numbers between 1 to n
+    - a^$(m) % m = 1%m --> Euler's theorem
+    - gcd(a,m) = 1
+    - now, when m is prime then a^m-1 %m = 1%m here $(m) = m-1 when m is prime ---> fermat's little theorem
 
+18. Powers are cyclic. Mod repeates at every m numbers
+    - a^b % m = a^b%m-1 % m
+
+
+
+19. Combinatorics & Probability
+    - Combinatorics
+        - Binomial Coefficients - ways to choose
+            - Number of ways to choose k items from n items
+            - (n,k) = n!/k!(n-k)!
+            - When order of picking k items does not matter - 1,2,3 or 3,2,1 both are same
+            - create an array to store i! 
+            - create an array to store (1/i)!
+        - 2 different use cases
+            - calculate C(n,r) many times with O(n) pre-computation and O(1) calculation of each query.
+            - Calculate C(n,r) just once in O(r) time
+        - Important Binomial Results
+            - C(n,k) = C(n, n-k)
+            - C(n,k) = C(n-1, k-1) + C(n-1, k). => Pick or dont pick it => DP
+            - summation(k=0 to n) C(n, k) = 2^n
+            - k items always included - C(n,r) = C(n-k, r-k)
+            - k items are never included - C(n,r) = C(n-k, r)
+            - Value of C(n,r) is greatest when r = n/2
+        - Arrangements
+            - Arrange distinct elements - n!
+            - Arrange similar elements - ((a1+a2+a3+....+an)!)/a1!*a2!*a3!...an!  here a1,a2 are number of occurrences of each type.
+
+
+
+
+20. String Hashing
+    - Optimizes Brute force solutions
+    - Help in comparing two strings
+    - Daddy of string algos
+    - if a == b then Hash(a) = Hash(b)
+    - strings are not compared in O(1) like integers
+    - X (string). -> Hash(x). -> Unique integer representation of x that we can store
+    - Logic step by step
+        - store each character of string in a list of character
+        - assume all character are lower case now convert this list into interger list - xi - 'a'
+        - now multiply each number from interger list by power of 26. as integer can range from 0 to 25
+    - there are 10^18 size to store an integer. 
+    - strings are infinite -> Calculated Unique interger will be infinite - but to store them we have finite 10^18. So it could be possible two different strings map to same interger. But its probability is very low.
+    - if two strings are different A != B, Hash(A) != Hash(B) but f(Hash(A)) can be equal to f(Hash(B)) because f(y) = y % 10^15, here f(y) is a function that maps to huge unique interger to storable integer.
+    - Probabilty of (x%M = y%M) = 1/M as per above example
+        - P((Hash(A)%10^15) = (Hash(B)%10^15)) = 1/10^15
+
+        ![alt text](image.png)
+    - To check A == B we just need to check hash(A) = Hash(B)
+    - To check A > B or A < B we know hash(A) != Hash(B), we can use binary serach to find character where two strings different.
+    - to calcuate hash of substring of string A in constant time - use pre hash logic
+
+21. Tries
+    - String Tries
+        - Tries != Trees
+        - Initially to answer Q queies on N strings - we use binary serach and Hashing
+        - Tries help to move precomputation time complexity almost O(1) and querie computation time complexity to almost O(1)
+        - Trie will have edges connected for input string, The node at which strings end will have counter (string_ends_with) to find count of strings which is equal to X and node will have second counter (string_ending_below) to identify number of strings has some prefix X. 
+        - A trie (prefix tree) is a tree-based data structure used to store and search strings efficiently, especially when you care about prefixes.
+        - branch factor of each node is 26
+        
+    - % = approx 5 extra operations
+    - Space complexity of trie
+        - All Unique strings of length L (40) = 26^40
+        - Lets assume we have N = 10^6 and L = 40, 
+        - overestimate space complexity = N.L.26 = 10^6*40*26
+        - actual = 26 + 26^2 + 26^3 + 26^4  + 26^5 + 10^6*36*26
+        - Now, overestimate is 8 times larger than actual
+    - Binary Tries
+        - Represent decimal numbers in binary, and insert their bits in trie
+        - branch factor is 2
+        - Two way
+            - MSB to LSB - have little problem, pre hand we dont know th depth of trie
+                - solution- each binary representation will be same number of bits.
+            - LSB to MSB - No extra bit is needed in this
+        - use in deterministic approch where you are sure where to go
+
+22. Greedy Algorithm
+    - Greedy strategy is that assumes that the best answer can be found using some possibilities and only tries those limited possibilities.
+    - It involves coming up with a claim (greedy) and then proving it. 
+    - How to prove greedy strategy 
+        - Formal (Simple math) (everyone understand and believe) [Best Approch] or intuitive proof (You understand and you believe) [Third best approach]
+        - Trying out too many cases and failing to disaprove (everyone understand but only you believe) [Second best approach]
+
+    - Hint - Create greedy solution then create other solution from greedy solution and try to proof other solution will not work.
+    - Greedy strategy works in one problem but might not work in another type of problem
+    - 99% Greedy problems need sorting so check constraints that O(nlogn) is applicable or not.
+        
 
 
 
