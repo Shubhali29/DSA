@@ -305,6 +305,8 @@ Number Theory
     - Hint - Create greedy solution then create other solution from greedy solution and try to proof other solution will not work.
     - Greedy strategy works in one problem but might not work in another type of problem
     - 99% Greedy problems need sorting so check constraints that O(nlogn) is applicable or not.
+
+   - Whenever question has find minimum or maximum of something try to thing of monotonic.
         
 
 
