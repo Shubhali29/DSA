@@ -17,7 +17,7 @@ Dynamic Programming
 6. Every DP problem has four terms
     - State
     - Transition
-    - Trivial problem
+    - Trivial problem or Base Case
     - Final answer
 7. Time complexity of subproblem will not encounter in time complexity of bigger problem
 8. Space complexity is equal to number of unique subproblems.
